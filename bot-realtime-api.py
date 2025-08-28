@@ -15,9 +15,25 @@ from pipecat_window_functions import (
     handle_list_windows,
     handle_remember_window,
     handle_send_text_to_window,
+    handle_run_actions,
+    handle_run_actions_file,
+    handle_start_action_recording,
+    handle_stop_action_recording,
+    handle_save_sequence,
+    handle_list_sequences,
+    handle_delete_sequence,
+    handle_run_sequence,
     list_windows_schema,
     remember_window_schema,
     send_text_to_window_schema,
+    run_actions_schema,
+    run_actions_file_schema,
+    start_action_recording_schema,
+    stop_action_recording_schema,
+    save_sequence_schema,
+    list_sequences_schema,
+    delete_sequence_schema,
+    run_sequence_schema,
 )
 from pipecat.frames.frames import TranscriptionMessage
 from pipecat.pipeline.pipeline import Pipeline
@@ -50,6 +66,14 @@ tools = ToolsSchema(
         list_windows_schema,
         remember_window_schema,
         send_text_to_window_schema,
+        run_actions_schema,
+        run_actions_file_schema,
+        start_action_recording_schema,
+        stop_action_recording_schema,
+        save_sequence_schema,
+        list_sequences_schema,
+        delete_sequence_schema,
+        run_sequence_schema,
     ]
 )
 
@@ -86,10 +110,18 @@ async def run_bot(transport: BaseTransport, runner_args: RunnerArguments):
         model="gpt-4o-realtime-preview-2025-08-25",
     )
 
-    # Register window control functions
+    # Register window control and sequence functions
     llm.register_function("list_windows", handle_list_windows)
     llm.register_function("remember_window", handle_remember_window)
     llm.register_function("send_text_to_window", handle_send_text_to_window)
+    llm.register_function("run_actions", handle_run_actions)
+    llm.register_function("run_actions_file", handle_run_actions_file)
+    llm.register_function("start_action_recording", handle_start_action_recording)
+    llm.register_function("stop_action_recording", handle_stop_action_recording)
+    llm.register_function("save_sequence", handle_save_sequence)
+    llm.register_function("list_sequences", handle_list_sequences)
+    llm.register_function("delete_sequence", handle_delete_sequence)
+    llm.register_function("run_sequence", handle_run_sequence)
 
     transcript = TranscriptProcessor()
 
