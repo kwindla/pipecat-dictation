@@ -28,7 +28,7 @@ from pipecat.processors.frameworks.rtvi import (
     BotInterruptionFrame,
 )
 from pipecat.frames.frames import StartFrame, StopFrame
-from macos.local_mac_transport import (
+from pipecat_macos_transport.local_mac_transport import (
     LocalMacTransport,
     LocalMacTransportParams,
 )
