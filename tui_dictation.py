@@ -10,9 +10,9 @@ from textual.containers import Vertical, Horizontal
 
 from loguru import logger
 
-from tui.core.base_app import BotTUIBase
-from tui.widgets.text_list_panel import TextListPanel
-from tui.core.utils.imports import import_bot_module
+from voice_tui_kit.core.base_app import BotTUIBase
+from voice_tui_kit.widgets.text_list_panel import TextListPanel
+from voice_tui_kit.core.utils.imports import import_bot_module
 
 
 class DictationTUI(BotTUIBase):
@@ -68,8 +68,8 @@ class DictationTUI(BotTUIBase):
             self.messages = TextListPanel(id="messages")
             yield self.messages
             # Overlays expected by base (RTVI + Syslog), initially hidden
-            from tui.widgets.rtvi_list_panel import RTVIListPanel
-            from tui.widgets.syslog_panel import SyslogPanel
+            from voice_tui_kit.widgets.rtvi_list_panel import RTVIListPanel
+            from voice_tui_kit.widgets.syslog_panel import SyslogPanel
 
             with Horizontal(id="rtvi_panes"):
                 self.rtvi_inbox = RTVIListPanel(id="inbox", classes="log")
